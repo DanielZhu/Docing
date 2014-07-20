@@ -1,0 +1,33 @@
+{
+  "name":         "docing",
+  "version":      "0.1.0",
+  "main": "hello-world-server.njs",
+  "description":  "A document generator for all the languages",
+  "keywords":     ["documentation", "docs", "generator"],
+  "author":       "Daniel Zhu (Zhu Mengdan)",
+  "readmeFilename": "README.md",
+  "scripts": {
+    "test": "echo \"Error: no test specified! Configure in package.json\" && exit 1"
+  },
+  "licenses": [{
+    "type":       "MIT",
+    "url":        "http://opensource.org/licenses/mit-license.php"
+  }],
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "engines": {
+    "node":       ">=0.2.0"
+  },
+  "dependencies": {
+    "commander":  ">= 0.5.2",
+    "marked":     ">= 0.2.7",
+    "underscore": ">= 1.0.0",
+    "highlight": ">= 0.2.x"
+  },
+  "main" :        "./Docing",
+  "bin": {
+    "docing":      "./bin/docing"
+  }
+}

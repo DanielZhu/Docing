@@ -1,0 +1,181 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/style.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+/* line 3, sm-generate/sass/_custom.scss */
+html {
+  height: 100%;
+}
+
+/* line 5, sm-generate/sass/_custom.scss */
+body {
+  font-family: "aller-light";
+  font-size: 14px;
+  color: #30404f;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+/* line 14, sm-generate/sass/_custom.scss */
+.container {
+  width: 100%;
+  height: 100%;
+  padding: 5px;
+}
+/* line 18, sm-generate/sass/_custom.scss */
+.container ul {
+  list-style: none;
+  margin: 0;
+}
+
+/* line 27, sm-generate/sass/_custom.scss */
+.code {
+  width: 56%;
+  float: left;
+  padding: 10px 0px 0px 10px;
+  background: #e2e2d8;
+}
+
+/* line 34, sm-generate/sass/_custom.scss */
+.comment {
+  width: 42%;
+  float: right;
+  padding: 10px 0px 0px 10px;
+  background: #fcfcea;
+}
+
+/*---------------------- Low resolutions (> 320px) ---------------------*/
+/*----------------------  (> 481px) ---------------------*/
+/*---------------------- (> 1025px) ---------------------*/
+/*
+
+Original style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiacs.Org>
+
+*/
+/* line 62, sm-generate/sass/_custom.scss */
+pre code {
+  display: block;
+  padding: 0.5em;
+  background: #F0F0F0;
+}
+
+/* line 70, sm-generate/sass/_custom.scss */
+pre code,
+pre .ruby .subst,
+pre .tag .title,
+pre .lisp .title {
+  color: black;
+}
+
+/* line 99, sm-generate/sass/_custom.scss */
+pre .string,
+pre .title,
+pre .constant,
+pre .parent,
+pre .tag .value,
+pre .rules .value,
+pre .rules .value .number,
+pre .preprocessor,
+pre .ruby .symbol,
+pre .ruby .symbol .string,
+pre .ruby .symbol .keyword,
+pre .ruby .symbol .keymethods,
+pre .instancevar,
+pre .aggregate,
+pre .template_tag,
+pre .django .variable,
+pre .smalltalk .class,
+pre .addition,
+pre .flow,
+pre .stream,
+pre .bash .variable,
+pre .apache .tag,
+pre .apache .cbracket,
+pre .tex .command,
+pre .tex .special,
+pre .erlang_repl .function_or_atom {
+  color: #800;
+}
+
+/* line 107, sm-generate/sass/_custom.scss */
+pre .comment,
+pre .annotation,
+pre .template_comment,
+pre .diff .header,
+pre .chunk {
+  color: #888;
+}
+
+/* line 118, sm-generate/sass/_custom.scss */
+pre .number,
+pre .date,
+pre .regexp,
+pre .literal,
+pre .smalltalk .symbol,
+pre .smalltalk .char,
+pre .go .constant,
+pre .change {
+  color: #080;
+}
+
+/* line 141, sm-generate/sass/_custom.scss */
+pre .label,
+pre .javadoc,
+pre .ruby .string,
+pre .decorator,
+pre .filter .argument,
+pre .localvars,
+pre .array,
+pre .attr_selector,
+pre .important,
+pre .pseudo,
+pre .pi,
+pre .doctype,
+pre .deletion,
+pre .envvar,
+pre .shebang,
+pre .apache .sqbracket,
+pre .nginx .built_in,
+pre .tex .formula,
+pre .erlang_repl .reserved,
+pre .input_number {
+  color: #8888ff;
+}
+
+/* line 148, sm-generate/sass/_custom.scss */
+pre .css .tag,
+pre .javadoctag,
+pre .phpdoc,
+pre .yardoctag {
+  font-weight: bold;
+}
+
+/* line 163, sm-generate/sass/_custom.scss */
+pre .keyword,
+pre .id,
+pre .phpdoc,
+pre .title,
+pre .built_in,
+pre .aggregate,
+pre .smalltalk .class,
+pre .winutils,
+pre .bash .variable,
+pre .apache .tag,
+pre .go .typename,
+pre .tex .command {
+  font-weight: bold;
+}
+
+/* line 167, sm-generate/sass/_custom.scss */
+pre .nginx .built_in {
+  font-weight: normal;
+}
+
+/* line 174, sm-generate/sass/_custom.scss */
+pre .xml .css,
+pre .xml .javascript,
+pre .xml .vbscript,
+pre .tex .formula {
+  opacity: 0.5;
+}
