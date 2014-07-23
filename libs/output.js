@@ -1,7 +1,7 @@
 var marked = require('marked');
-var fs = require('fs');
 var hl = require('highlight').Highlight;
 var underscore = require('underscore')._;
+var fse = require('fs-extra');
 
 var parseMarkdown = function () {
 
@@ -12,14 +12,14 @@ var parseHighlight = function () {
 }
 
 var writeToFile = function (filename, line) {
-  fs.appendFileSync(filename, line, {encoding: 'utf8'});
+  fse.appendFileSync(filename, line, {encoding: 'utf8'});
 }
 
 var renderHtml = function (outputList, filePath, filename) {
-	var readStream = fs.createReadStream('./template/docTemplate.html', {encoding: 'utf8', autoClose: true});
+	var readStream = fse.createReadStream('./template/docTemplate.html', {encoding: 'utf8', autoClose: true});
 
 	readStream.on('data', function(chunk) {
-		var compiled = underscore.template(chunk, {_: underscore, hl: hl, splitList: outputList});
+		var compiled = underscore.template(chunk, {_: underscore, hl: hl, mk: marked, splitList: outputList});
 		writeToFile(filePath + filename, compiled);
 		copyResources(filePath);
   });
@@ -28,19 +28,24 @@ var renderHtml = function (outputList, filePath, filename) {
 
 var copyResources = function (filePath) {
 	var cssFile = filePath + 'resources/docing.css';
-	var resourceExist = fs.existsSync(filePath + 'resources');
 
-	if (!resourceExist) {
-		fs.mkdirSync(filePath + 'resources', '0777');
-  }
-  fs.open(cssFile , 'w+', '0777', function(err, fd) {
-    fs.closeSync(fd);
-		var readStream = fs.createReadStream('./resources/docing.css', {encoding: 'utf8', autoClose: true});
+	fse.copy('./resources', filePath + 'resources', function(err){
+	  if (err) return console.error(err);
+	  console.log("success!")
+	}); //copies directory, even if it has subdirectories or files
 
-		readStream.on('data', function(chunk) {
-			writeToFile(cssFile, chunk);
-	  });
-  });
+	// var resourceExist = fse.existsSync(filePath + 'resources');
+	// if (!resourceExist) {
+	// 	fse.mkdirSync(filePath + 'resources', '0777');
+ //  }
+ //  fse.open(cssFile , 'w+', '0777', function(err, fd) {
+ //    fse.closeSync(fd);
+	// 	var readStream = fse.createReadStream('./resources/docing.css', {encoding: 'utf8', autoClose: true});
+
+	// 	readStream.on('data', function(chunk) {
+	// 		writeToFile(cssFile, chunk);
+	//   });
+ //  });
 }
 
 module.exports.renderHtml = renderHtml;

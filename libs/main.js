@@ -12,9 +12,9 @@ var path = require('path');
 var sys=require('sys');
 var split = require('./split');
 var output = require('./output');
+var lang = require('./lang');
 
-
-var folderPath = 'C:/staydan.com/gamePingPang/js';
+var folderPath = 'C:/staydan.com/libs/';
 var filesQueue = [];
 
 // Create the folder if not existing
@@ -24,7 +24,7 @@ var createDocFolder = function () {
     console.log(JSON.stringify(err));
     if (err !== null) {
       fs.mkdir(folderPath + '/docs', '0777', function() {
-
+        readFiles();
       });
     } else {
       readFiles();
@@ -38,36 +38,49 @@ var outputHtml = function (i) {
   var fileName = path.basename(filePath, extName);
   var readStream = null;
   var outputList = [];
+  var outputFileTree = [];
 
   fs.stat(filePath, function(err, stats) {
     if (filesQueue.length > 0) {
       if (stats.isFile()) {
-        readStream = fs.createReadStream(filePath, {encoding: 'utf8', autoClose: true});
+        var langConfig = lang.loadLangConfigByExtName(extName);
+        if (langConfig.error !== undefined) {
+          console.log(langConfig.error);
+        } else {
+          fs.readFile(filePath, {encoding: 'utf8', autoClose: true}, function (err, data) {
+            console.log('got %d bytes of data', data.length);
 
-        readStream.on('data', function(chunk) {
-          console.log('got %d bytes of data', chunk.length);
-          outputList = split.splitOutSrc(chunk, extName);
-          output.renderHtml(outputList, path.dirname(filePath) + '/docs/', fileName + '.d.html');
-        });
-
-        readStream.on('end', function() {
-          console.log('there will be no more data.');
-        });
-        // fs.readFile(filePath, 'utf8', function(err, data) {
-        //   if (err) {
-        //     throw err;
-        //   }
-        //   console.log(data);
-          fs.open(path.dirname(filePath) + '/docs/' + fileName + '.d.html', 'w+', '0777', function(err, fd) {
-            fs.closeSync(fd);
+            outputList = split.splitOutSrc(data, langConfig);
+            output.renderHtml(outputList, path.dirname(filePath) + '/docs/', fileName + '.d.html');
+            fs.open(path.dirname(filePath) + '/docs/' + fileName + '.d.html', 'w+', '0777', function(err, fd) {
+              fs.closeSync(fd);
+            });
           });
-        // });
+          // readStream = fs.createReadStream(filePath, {encoding: 'utf8', autoClose: true});
+
+          // readStream.on('data', function(chunk) {
+          //   console.log('got %d bytes of data', chunk.length);
+          //   outputList = split.splitOutSrc(chunk, extName);
+          //   output.renderHtml(outputList, path.dirname(filePath) + '/docs/', fileName + '.d.html');
+          // });
+
+          // readStream.on('end', function() {
+          //   console.log('there will be no more data.');
+          // });
+          // fs.readFile(filePath, 'utf8', function(err, data) {
+          //   if (err) {
+          //     throw err;
+          //   }
+          //   console.log(data);
+          // });
+        }
       }
       if (i + 1 < filesQueue.length) {
         outputHtml(i + 1);
       }
     }
   });
+
 };
 
 // Read the directory 'Docing/js/'

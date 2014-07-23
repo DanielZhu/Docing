@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html class="no-js" lang="en">
+<html lang="en">
 <head>
   <title></title>
   <meta name="description" content="">
@@ -8,29 +8,36 @@
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
 
+  <script type="text/javascript" src="resources/jquery.min.js"></script>
+  <script type="text/javascript" src="resources/jquery-ui.min.js"></script>
+  <link rel="stylesheet" href="resources/jquery-ui.min.css">
+
   <link rel="stylesheet" href="resources/docing.css">
+  <script type="text/javascript" src="resources/docing.js"></script>
+  <style> 
+  </style>
 </head>
 <body>
   <div class="container">
-    <ul>
-      <% 
-      var i = 1;
-      _.each(splitList, function(item) { %>
-        <li id="<%= 'row-' + i %>">
-          <div class="code">
-            <pre>
-              <%= hl(item.code) %>
-            </pre>
-          </div>
-          <div class="comment">
-            <pre>
-              <%= hl(item.comment) %>
-            </pre>
-          </div>
-        </li> 
-      <% i++;
-        }); %>
-    </ul>
+    <div class="background"></div>
+    <div id="handler-vertical"></div>
+    <% 
+    var i = 1;
+    _.each(splitList, function(item) { %>
+    <div id="<%= 'row-' + i %>" name="<%= 'row-' + i %>">
+      <ul class="row">
+<!--         <li class="comment-anchor"><a href="#<%= 'row-' + i %>"><img src="resources/imgs/anchor_16_16.png" width="10px" height="10px" /></a></li> -->
+        <li class="comment">
+          <%= mk(item.comment) %>
+        </li>
+        <li class="code-anchor"><a href="#<%= 'row-' + i %>"><img src="resources/imgs/anchor_16_16.png" width="10px" height="10px" /></a></li>
+        <li class="code">
+          <pre><%= hl(item.code) %></pre>
+        </li>
+      </ul>
+    </div>
+    <% i++;
+      }); %>
   </div>
   <div id="footer"></div>
 </body>

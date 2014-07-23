@@ -2,12 +2,33 @@
  * In this file you should write your main styles. (or centralize your imports)
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/style.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
-/* line 3, sm-generate/sass/_custom.scss */
+/*---------------------- Font ---------------------*/
+@font-face {
+  font-family: "Anonymous Pro";
+  src: url("../resources/fonts/Anonymous Pro regular.ttf");
+}
+
+@font-face {
+  font-family: "Anonymous Pro Italic";
+  src: url("../resources/fonts/Anonymous Pro italic.ttf");
+}
+
+@font-face {
+  font-family: "Source Code Pro";
+  src: url("../resources/fonts/Source Code Pro regular.ttf");
+}
+
+@font-face {
+  font-family: "Source Code Pro 500";
+  src: url("../resources/fonts/Source Code Pro 500.ttf");
+}
+
+/* line 26, ../sm-generate/sass/_custom.scss */
 html {
   height: 100%;
 }
 
-/* line 5, sm-generate/sass/_custom.scss */
+/* line 28, ../sm-generate/sass/_custom.scss */
 body {
   font-family: "aller-light";
   font-size: 14px;
@@ -15,167 +36,288 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
+  background-color: #FDF6E3;
 }
 
-/* line 14, sm-generate/sass/_custom.scss */
-.container {
-  width: 100%;
-  height: 100%;
-  padding: 5px;
+/* line 38, ../sm-generate/sass/_custom.scss */
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background: #fff;
+  border-right: 1px solid #e5e5ee;
+  z-index: -1;
 }
-/* line 18, sm-generate/sass/_custom.scss */
+
+/* line 48, ../sm-generate/sass/_custom.scss */
+.container {
+  position: relative;
+  width: 100%;
+}
+/* line 52, ../sm-generate/sass/_custom.scss */
+.container > div {
+  clear: both;
+}
+/* line 56, ../sm-generate/sass/_custom.scss */
 .container ul {
+  -webkit-padding-start: 0px;
   list-style: none;
   margin: 0;
 }
-
-/* line 27, sm-generate/sass/_custom.scss */
-.code {
-  width: 56%;
-  float: left;
-  padding: 10px 0px 0px 10px;
-  background: #e2e2d8;
+/* line 60, ../sm-generate/sass/_custom.scss */
+.container ul.row {
+  display: inline;
+  width: 100%;
 }
 
-/* line 34, sm-generate/sass/_custom.scss */
+/* line 67, ../sm-generate/sass/_custom.scss */
+.code {
+  font-family: "Source Code Pro";
+  padding: 5px 10px 5px 30px;
+  word-wrap: normal;
+}
+
+/* line 73, ../sm-generate/sass/_custom.scss */
+.code-anchor {
+  padding: 5px 0px 5px 5px;
+  display: none;
+  float: left;
+}
+
+/* line 79, ../sm-generate/sass/_custom.scss */
 .comment {
-  width: 42%;
-  float: right;
-  padding: 10px 0px 0px 10px;
-  background: #fcfcea;
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 12px;
+  height: 100%;
+  text-align: left;
+  padding: 5px 10px 5px 30px;
+  word-wrap: normal;
+  float: left;
+  line-height: 22px;
+}
+
+/* line 90, ../sm-generate/sass/_custom.scss */
+.comment-anchor {
+  float: left;
+  padding: 5px 0px;
+}
+
+/* line 96, ../sm-generate/sass/_custom.scss */
+#handler-vertical {
+  width: 40%;
+  min-width: 20%;
+  max-width: 80%;
+  padding: 5px 0;
+  top: -5px;
+  left: 0;
+  bottom: 0px;
+  position: absolute;
+  top: -5px;
+  border-right: 2px solid lightblue;
+}
+
+/* line 115, ../sm-generate/sass/_custom.scss */
+.highlight-text {
+  background-color: lightblue;
 }
 
 /*---------------------- Low resolutions (> 320px) ---------------------*/
+@media only screen and (min-width: 320px) {
+  /* line 122, ../sm-generate/sass/_custom.scss */
+  .code {
+    width: 100%;
+  }
+
+  /* line 126, ../sm-generate/sass/_custom.scss */
+  .comment {
+    width: 100%;
+  }
+
+  /* line 129, ../sm-generate/sass/_custom.scss */
+  #handler-vertical {
+    width: 0px;
+  }
+
+  /* line 133, ../sm-generate/sass/_custom.scss */
+  .background {
+    width: 0px;
+  }
+}
 /*----------------------  (> 481px) ---------------------*/
+@media only screen and (min-width: 481px) {
+  /* line 141, ../sm-generate/sass/_custom.scss */
+  .code {
+    margin-left: 200px;
+  }
+
+  /* line 145, ../sm-generate/sass/_custom.scss */
+  .comment {
+    width: 160px;
+  }
+
+  /* line 149, ../sm-generate/sass/_custom.scss */
+  #handler-vertical {
+    width: 200px;
+  }
+
+  /* line 153, ../sm-generate/sass/_custom.scss */
+  .background {
+    width: 200px;
+  }
+}
 /*---------------------- (> 1025px) ---------------------*/
+@media only screen and (min-width: 1025px) {
+  /* line 160, ../sm-generate/sass/_custom.scss */
+  .code {
+    margin-left: 450px;
+  }
+
+  /* line 164, ../sm-generate/sass/_custom.scss */
+  .comment {
+    width: 410px;
+  }
+
+  /* line 168, ../sm-generate/sass/_custom.scss */
+  #handler-vertical {
+    width: 450px;
+  }
+
+  /* line 172, ../sm-generate/sass/_custom.scss */
+  .background {
+    width: 450px;
+  }
+}
 /*
 
-Original style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiacs.Org>
+Intellij Idea-like styling (c) Vasily Polovnyov <vast@whiteants.net>
 
 */
-/* line 62, sm-generate/sass/_custom.scss */
+/* line 183, ../sm-generate/sass/_custom.scss */
 pre code {
   display: block;
   padding: 0.5em;
-  background: #F0F0F0;
+  color: #000;
+  background: #fff;
 }
 
-/* line 70, sm-generate/sass/_custom.scss */
-pre code,
-pre .ruby .subst,
-pre .tag .title,
-pre .lisp .title {
-  color: black;
+/* line 190, ../sm-generate/sass/_custom.scss */
+pre .subst,
+pre .title {
+  font-weight: normal;
+  color: #000;
 }
 
-/* line 99, sm-generate/sass/_custom.scss */
-pre .string,
-pre .title,
-pre .constant,
-pre .parent,
-pre .tag .value,
-pre .rules .value,
-pre .rules .value .number,
-pre .preprocessor,
-pre .ruby .symbol,
-pre .ruby .symbol .string,
-pre .ruby .symbol .keyword,
-pre .ruby .symbol .keymethods,
-pre .instancevar,
-pre .aggregate,
-pre .template_tag,
-pre .django .variable,
-pre .smalltalk .class,
-pre .addition,
-pre .flow,
-pre .stream,
-pre .bash .variable,
-pre .apache .tag,
-pre .apache .cbracket,
-pre .tex .command,
-pre .tex .special,
-pre .erlang_repl .function_or_atom {
-  color: #800;
-}
-
-/* line 107, sm-generate/sass/_custom.scss */
+/* line 198, ../sm-generate/sass/_custom.scss */
 pre .comment,
-pre .annotation,
 pre .template_comment,
-pre .diff .header,
-pre .chunk {
-  color: #888;
+pre .javadoc,
+pre .diff .header {
+  color: #808080;
+  font-style: italic;
 }
 
-/* line 118, sm-generate/sass/_custom.scss */
+/* line 211, ../sm-generate/sass/_custom.scss */
+pre .annotation,
+pre .decorator,
+pre .preprocessor,
+pre .doctype,
+pre .pi,
+pre .chunk,
+pre .shebang,
+pre .apache .cbracket,
+pre .input_number {
+  color: #808000;
+}
+
+/* line 216, ../sm-generate/sass/_custom.scss */
+pre .tag,
+pre .pi {
+  background: #efefef;
+}
+
+/* line 231, ../sm-generate/sass/_custom.scss */
+pre .tag .title,
+pre .id,
+pre .attr_selector,
+pre .pseudo,
+pre .literal,
+pre .keyword,
+pre .hexcolor,
+pre .css .function,
+pre .ini .title,
+pre .css .class,
+pre .list .title,
+pre .tex .command {
+  font-weight: bold;
+  color: #000080;
+}
+
+/* line 241, ../sm-generate/sass/_custom.scss */
+pre .attribute,
+pre .rules .keyword,
 pre .number,
 pre .date,
 pre .regexp,
-pre .literal,
-pre .smalltalk .symbol,
-pre .smalltalk .char,
-pre .go .constant,
-pre .change {
-  color: #080;
-}
-
-/* line 141, sm-generate/sass/_custom.scss */
-pre .label,
-pre .javadoc,
-pre .ruby .string,
-pre .decorator,
-pre .filter .argument,
-pre .localvars,
-pre .array,
-pre .attr_selector,
-pre .important,
-pre .pseudo,
-pre .pi,
-pre .doctype,
-pre .deletion,
-pre .envvar,
-pre .shebang,
-pre .apache .sqbracket,
-pre .nginx .built_in,
-pre .tex .formula,
-pre .erlang_repl .reserved,
-pre .input_number {
-  color: #8888ff;
-}
-
-/* line 148, sm-generate/sass/_custom.scss */
-pre .css .tag,
-pre .javadoctag,
-pre .phpdoc,
-pre .yardoctag {
+pre .tex .special {
   font-weight: bold;
+  color: #0000ff;
 }
 
-/* line 163, sm-generate/sass/_custom.scss */
-pre .keyword,
-pre .id,
-pre .phpdoc,
-pre .title,
-pre .built_in,
-pre .aggregate,
-pre .smalltalk .class,
-pre .winutils,
-pre .bash .variable,
-pre .apache .tag,
-pre .go .typename,
-pre .tex .command {
-  font-weight: bold;
-}
-
-/* line 167, sm-generate/sass/_custom.scss */
-pre .nginx .built_in {
+/* line 247, ../sm-generate/sass/_custom.scss */
+pre .number,
+pre .regexp {
   font-weight: normal;
 }
 
-/* line 174, sm-generate/sass/_custom.scss */
-pre .xml .css,
-pre .xml .javascript,
-pre .xml .vbscript,
+/* line 255, ../sm-generate/sass/_custom.scss */
+pre .string,
+pre .value,
+pre .filter .argument,
+pre .css .function .params,
+pre .apache .tag {
+  color: #008000;
+  font-weight: bold;
+}
+
+/* line 265, ../sm-generate/sass/_custom.scss */
+pre .symbol,
+pre .ruby .symbol .string,
+pre .ruby .symbol .keyword,
+pre .ruby .symbol .keymethods,
+pre .char,
 pre .tex .formula {
-  opacity: 0.5;
+  color: #000;
+  background: #d0eded;
+  font-style: italic;
+}
+
+/* line 273, ../sm-generate/sass/_custom.scss */
+pre .phpdoc,
+pre .yardoctag,
+pre .javadoctag {
+  text-decoration: underline;
+}
+
+/* line 280, ../sm-generate/sass/_custom.scss */
+pre .variable,
+pre .envvar,
+pre .apache .sqbracket,
+pre .nginx .built_in {
+  color: #660e7a;
+}
+
+/* line 284, ../sm-generate/sass/_custom.scss */
+pre .addition {
+  background: #baeeba;
+}
+
+/* line 288, ../sm-generate/sass/_custom.scss */
+pre .deletion {
+  background: #ffc8bd;
+}
+
+/* line 292, ../sm-generate/sass/_custom.scss */
+pre .diff .change {
+  background: #bccff9;
 }

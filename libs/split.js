@@ -1,11 +1,8 @@
-var lang = require('./lang');
-
 // [
 //  {"code": "", "comment": ""},
 //  {"code": "", "comment": ""},
 //  {"code": "", "comment": ""}
 // ]
-
 
 var outputList = [];
 
@@ -13,15 +10,11 @@ var resetItem = function () {
   return new Object({"comment": "", "code": ""});
 }
 
-var splitOutSrc = function (fileData, extName) {
+var splitOutSrc = function (fileData, langConfig) {
   outputList = [];
   var item = resetItem();
   console.log('splitOutSrc start...');
-  var langConfig = lang.loadLangConfigByExtName(extName);
-  if (langConfig.error !== undefined) {
-    console.log(langConfig.error);
-    return;
-  }
+
   var commentFommat = langConfig.comments;
   var previousCommStart = null;
 
@@ -59,16 +52,27 @@ var splitOutSrc = function (fileData, extName) {
         }
         commEndIndexOf = fileData.indexOf(commEnd);
         // Store the comment block, and break it
-        item.comment += fileData.substring(commStart.length, commEndIndexOf);
+        
+        var comment = fileData.substring(commStartMin + commStart.length, commEndIndexOf);
+        // if (comment.trim().length !== 0) {
+          item.comment += '  \n' + comment;
+        // }
       } else {
-        item.code = fileData.substring(0, commStartMin);
-        outputList.push(item);
-        item = resetItem();
+        if (fileData.substring(0, commStartMin).trim().length !== 0) {
+          item.code = fileData.substring(0, commStartMin);
+          outputList.push(item);
+          item = resetItem();
+        }
         fileData = fileData.substring(commStartMin);
         // Found the comment start
         commEndIndexOf = fileData.indexOf(commEnd);
         // Store the comment block, and break it
-        item.comment = fileData.substring(commStart.length, commEndIndexOf);
+        var comment = fileData.substring(commStart.length, commEndIndexOf);
+        if (comment.trim().length === 0) {
+          resetItem();
+        } else {
+          item.comment = comment;
+        }
       }
       fileData = fileData.substring(commEndIndexOf + commEnd.length);
       previousCommStart = commStart;
@@ -77,6 +81,7 @@ var splitOutSrc = function (fileData, extName) {
   }
 
   console.log('splitOutSrc end...');
+  // console.log('outputList...' + outputList);
   return outputList;
 }
 
