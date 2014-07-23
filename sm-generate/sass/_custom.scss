@@ -1,0 +1,294 @@
+// @import "node_modules/highlight/lib/vendor/highlight.js/styles/default.css";
+
+
+/*---------------------- Font ---------------------*/
+
+@font-face {
+    font-family: "Anonymous Pro";
+    src: url("../resources/fonts/Anonymous Pro regular.ttf");
+}
+
+@font-face {
+    font-family: "Anonymous Pro Italic";
+    src: url("../resources/fonts/Anonymous Pro italic.ttf");
+}
+
+@font-face {
+    font-family: "Source Code Pro";
+    src: url("../resources/fonts/Source Code Pro regular.ttf");
+}
+
+@font-face {
+    font-family: "Source Code Pro 500";
+    src: url("../resources/fonts/Source Code Pro 500.ttf");
+}
+
+html { height: 100%; }
+
+body {
+  font-family: "aller-light";
+  font-size: 14px;
+  color: #30404f;
+  margin: 0; 
+  padding: 0;
+  height:100%;
+  background-color: #FDF6E3;
+}
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background: #fff;
+  border-right: 1px solid #e5e5ee;
+  z-index: -1;
+}
+
+.container {
+  position:relative;
+  width: 100%;
+  // height: 100%;
+  > div {
+    // background: #FAF0E6;
+    clear: both;
+  }
+  ul {
+    -webkit-padding-start: 0px;
+    list-style: none;
+    margin: 0;
+    &.row {
+      display: inline;
+      width: 100%;
+    }
+  }
+}
+
+.code {
+  font-family: "Source Code Pro";
+  padding: 5px 10px 5px 30px;
+  word-wrap: normal;
+}
+
+.code-anchor {
+  padding: 5px 0px 5px 5px;
+  display: none;
+  float: left;
+}
+
+.comment {
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 12px;
+  height: 100%;
+  text-align: left;
+  padding: 5px 10px 5px 30px;
+  word-wrap: normal;
+  float: left;
+  line-height: 22px;
+}
+
+.comment-anchor {
+  // display: none;
+  float: left;
+  padding: 5px 0px;
+}
+
+#handler-vertical {
+  width: 40%;
+  min-width: 20%;
+  max-width: 80%;
+  padding: 5px 0;
+  top: -5px;
+  left: 0;
+  bottom: 0px;
+  // cursor: row-resize;
+  position: absolute;
+  top: -5px;
+  border-right: 2px solid lightblue;
+  // z-index: -1;
+  // resize: both;
+  // background-color: lightyellow;
+  // overflow:auto;
+  // background: url(../img/handle-v.png) 3px 50% no-repeat;
+}
+
+.highlight-text {
+  background-color: lightblue;
+
+}
+
+/*---------------------- Low resolutions (> 320px) ---------------------*/
+@media only screen and (min-width: 320px) {
+  .code {
+    width: 100%;
+  }
+
+  .comment {
+    width: 100%;
+  }
+  #handler-vertical {
+    width: 0px;
+  }
+
+  .background {
+    width: 0px;
+  }
+
+}
+
+/*----------------------  (> 481px) ---------------------*/
+@media only screen and (min-width: 481px) {
+  .code {
+    margin-left: 200px;
+  }
+  
+  .comment {
+    width: 200 - 40px;
+  }
+
+  #handler-vertical {
+    width: 200px;
+  }
+
+  .background {
+    width: 200px;
+  }
+}
+
+/*---------------------- (> 1025px) ---------------------*/
+@media only screen and (min-width: 1025px) {
+  .code {
+    margin-left: 450px;
+  }
+  
+  .comment {
+    width: 450 - 40px;
+  }
+
+  #handler-vertical {
+    width: 450px;
+  }
+
+  .background {
+    width: 450px;
+  }
+}
+
+/*
+
+Intellij Idea-like styling (c) Vasily Polovnyov <vast@whiteants.net>
+
+*/
+
+pre code {
+  display: block; padding: 0.5em;
+  color: #000;
+  background: #fff;
+}
+
+pre .subst,
+pre .title {
+  font-weight: normal;
+  color: #000;
+}
+
+pre .comment,
+pre .template_comment,
+pre .javadoc,
+pre .diff .header {
+  color: #808080;
+  font-style: italic;
+}
+
+pre .annotation,
+pre .decorator,
+pre .preprocessor,
+pre .doctype,
+pre .pi,
+pre .chunk,
+pre .shebang,
+pre .apache .cbracket,
+pre .input_number {
+  color: #808000;
+}
+
+pre .tag,
+pre .pi {
+  background: #efefef;
+}
+
+pre .tag .title,
+pre .id,
+pre .attr_selector,
+pre .pseudo,
+pre .literal,
+pre .keyword,
+pre .hexcolor,
+pre .css .function,
+pre .ini .title,
+pre .css .class,
+pre .list .title,
+pre .tex .command {
+  font-weight: bold;
+  color: #000080;
+}
+
+pre .attribute,
+pre .rules .keyword,
+pre .number,
+pre .date,
+pre .regexp,
+pre .tex .special {
+  font-weight: bold;
+  color: #0000ff;
+}
+
+pre .number,
+pre .regexp {
+  font-weight: normal;
+}
+
+pre .string,
+pre .value,
+pre .filter .argument,
+pre .css .function .params,
+pre .apache .tag {
+  color: #008000;
+  font-weight: bold;
+}
+
+pre .symbol,
+pre .ruby .symbol .string,
+pre .ruby .symbol .keyword,
+pre .ruby .symbol .keymethods,
+pre .char,
+pre .tex .formula {
+  color: #000;
+  background: #d0eded;
+  font-style: italic;
+}
+
+pre .phpdoc,
+pre .yardoctag,
+pre .javadoctag {
+  text-decoration: underline;
+}
+
+pre .variable,
+pre .envvar,
+pre .apache .sqbracket,
+pre .nginx .built_in {
+  color: #660e7a;
+}
+
+pre .addition {
+  background: #baeeba;
+}
+
+pre .deletion {
+  background: #ffc8bd;
+}
+
+pre .diff .change {
+  background: #bccff9;
+}
