@@ -24,8 +24,9 @@
     "commander":  ">= 0.5.2",
     "marked":     ">= 0.2.7",
     "underscore": ">= 1.0.0",
-    "highlight": ">= 0.2.x",
+    "highlight.js": ">= 8.1.0",
     "fs-extra": "0.10.0",
+    "jstree": ">= 3.0.0",
     "jquery": ">= 2.0.0"
   },
   "main" :        "./Docing",

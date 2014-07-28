@@ -1,29 +1,20 @@
 var marked = require('marked');
-var hl = require('highlight').Highlight;
+var hljs = require('highlight.js');
 var underscore = require('underscore')._;
 var fse = require('fs-extra');
-
-var parseMarkdown = function () {
-
-}
-
-var parseHighlight = function () {
-
-}
 
 var writeToFile = function (filename, line) {
   fse.appendFileSync(filename, line, {encoding: 'utf8'});
 }
 
-var renderHtml = function (outputList, filePath, filename) {
+var renderHtml = function (outputList, langConfig, filePath, filename) {
 	var readStream = fse.createReadStream('./template/docTemplate.html', {encoding: 'utf8', autoClose: true});
 
 	readStream.on('data', function(chunk) {
-		var compiled = underscore.template(chunk, {_: underscore, hl: hl, mk: marked, splitList: outputList});
+		var compiled = underscore.template(chunk, {_: underscore, lc: langConfig, hljs: hljs, mk: marked, splitList: outputList});
 		writeToFile(filePath + filename, compiled);
 		copyResources(filePath);
   });
-
 }
 
 var copyResources = function (filePath) {

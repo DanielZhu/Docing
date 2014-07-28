@@ -1,3 +1,5 @@
+var fse = require('fs-extra');
+
 // [
 //  {"code": "", "comment": ""},
 //  {"code": "", "comment": ""},
@@ -43,20 +45,25 @@ var splitOutSrc = function (fileData, langConfig) {
       item = resetItem();
       break;
     } else {
+      // The comment end of '\n'
       if (commEnd === '\n' && fileData.substring(0, commStartMin).trim().length === 0) {
+        // Remove all the empty texts
+       
         if (previousCommStart !== commStart) {
-          item.code = fileData.substring(0, commStartMin);
+          if (fileData.substring(0, commStartMin).trim().length !== 0) {
+            item.code = fileData.substring(0, commStartMin);
+          }
           outputList.push(item);
           item = resetItem();
-          fileData = fileData.substring(commStartMin);
         }
+
+        fileData = fileData.substring(commStartMin);
         commEndIndexOf = fileData.indexOf(commEnd);
-        // Store the comment block, and break it
         
-        var comment = fileData.substring(commStartMin + commStart.length, commEndIndexOf);
-        // if (comment.trim().length !== 0) {
-          item.comment += '  \n' + comment;
-        // }
+        // Store the comment block
+        var comment = fileData.substring(commStart.length, commEndIndexOf + commEnd.length);
+        item.comment += "  \n" + comment;
+
       } else {
         if (fileData.substring(0, commStartMin).trim().length !== 0) {
           item.code = fileData.substring(0, commStartMin);
@@ -81,7 +88,7 @@ var splitOutSrc = function (fileData, langConfig) {
   }
 
   console.log('splitOutSrc end...');
-  // console.log('outputList...' + outputList);
+  fse.writeFileSync('C:/staydan.com/libs/docs/log.json', JSON.stringify(outputList), {encoding: 'utf8'});
   return outputList;
 }
 

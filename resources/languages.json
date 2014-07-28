@@ -1,11 +1,11 @@
 [
 	{
-		"lang": "JavaScript",
+		"lang": "javascript",
 		"comments": [["/*!", "*/"], ["/*", "*/"], ["//", "\n"]],
 		"files": [".js"] 
 	},
 	{
-		"lang": "Html",
+		"lang": "html",
 		"comments": [["<!--", "-->"]],
 		"files": [".html", ".htm"] 
 	}
