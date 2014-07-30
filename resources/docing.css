@@ -45,9 +45,11 @@ body {
   right: 0px;
   top: 0px;
   z-index: 100;
+  overflow-y: scroll;
+  height: 80%;
 }
 
-/* line 45, ../sm-generate/sass/_custom.scss */
+/* line 47, ../sm-generate/sass/_custom.scss */
 .background {
   position: absolute;
   top: 0;
@@ -58,43 +60,43 @@ body {
   z-index: -1;
 }
 
-/* line 55, ../sm-generate/sass/_custom.scss */
+/* line 57, ../sm-generate/sass/_custom.scss */
 .container {
   position: relative;
   width: 100%;
 }
-/* line 59, ../sm-generate/sass/_custom.scss */
+/* line 61, ../sm-generate/sass/_custom.scss */
 .container > div {
   clear: both;
 }
-/* line 63, ../sm-generate/sass/_custom.scss */
+/* line 65, ../sm-generate/sass/_custom.scss */
 .container ul {
   -webkit-padding-start: 0px;
   list-style: none;
   margin: 0;
 }
-/* line 67, ../sm-generate/sass/_custom.scss */
+/* line 69, ../sm-generate/sass/_custom.scss */
 .container ul.row {
   display: inline;
   width: 100%;
   display: inline-block;
 }
 
-/* line 75, ../sm-generate/sass/_custom.scss */
+/* line 77, ../sm-generate/sass/_custom.scss */
 .code {
   font-family: "Source Code Pro";
   padding: 5px 10px 5px 30px;
   word-wrap: normal;
 }
 
-/* line 81, ../sm-generate/sass/_custom.scss */
+/* line 83, ../sm-generate/sass/_custom.scss */
 .code-anchor {
   padding: 5px 0px 5px 5px;
   display: none;
   float: left;
 }
 
-/* line 87, ../sm-generate/sass/_custom.scss */
+/* line 89, ../sm-generate/sass/_custom.scss */
 .comment {
   font-family: Verdana, Geneva, sans-serif;
   font-size: 12px;
@@ -106,13 +108,13 @@ body {
   line-height: 22px;
 }
 
-/* line 98, ../sm-generate/sass/_custom.scss */
+/* line 100, ../sm-generate/sass/_custom.scss */
 .comment-anchor {
   float: left;
   padding: 5px 0px;
 }
 
-/* line 104, ../sm-generate/sass/_custom.scss */
+/* line 106, ../sm-generate/sass/_custom.scss */
 #handler-vertical {
   width: 40%;
   min-width: 20%;
@@ -126,73 +128,73 @@ body {
   border-right: 2px solid lightblue;
 }
 
-/* line 123, ../sm-generate/sass/_custom.scss */
+/* line 125, ../sm-generate/sass/_custom.scss */
 .highlight-text {
   background-color: lightblue;
 }
 
 /*---------------------- Low resolutions (> 320px) ---------------------*/
 @media only screen and (min-width: 320px) {
-  /* line 130, ../sm-generate/sass/_custom.scss */
+  /* line 132, ../sm-generate/sass/_custom.scss */
   .code {
     width: 100%;
   }
 
-  /* line 134, ../sm-generate/sass/_custom.scss */
+  /* line 136, ../sm-generate/sass/_custom.scss */
   .comment {
     width: 100%;
   }
 
-  /* line 137, ../sm-generate/sass/_custom.scss */
+  /* line 139, ../sm-generate/sass/_custom.scss */
   #handler-vertical {
     width: 0px;
   }
 
-  /* line 141, ../sm-generate/sass/_custom.scss */
+  /* line 143, ../sm-generate/sass/_custom.scss */
   .background {
     width: 0px;
   }
 }
 /*----------------------  (> 481px) ---------------------*/
 @media only screen and (min-width: 481px) {
-  /* line 149, ../sm-generate/sass/_custom.scss */
+  /* line 151, ../sm-generate/sass/_custom.scss */
   .code {
     margin-left: 200px;
   }
 
-  /* line 153, ../sm-generate/sass/_custom.scss */
+  /* line 155, ../sm-generate/sass/_custom.scss */
   .comment {
     width: 160px;
   }
 
-  /* line 157, ../sm-generate/sass/_custom.scss */
+  /* line 159, ../sm-generate/sass/_custom.scss */
   #handler-vertical {
     width: 200px;
   }
 
-  /* line 161, ../sm-generate/sass/_custom.scss */
+  /* line 163, ../sm-generate/sass/_custom.scss */
   .background {
     width: 200px;
   }
 }
 /*---------------------- (> 1025px) ---------------------*/
 @media only screen and (min-width: 1025px) {
-  /* line 168, ../sm-generate/sass/_custom.scss */
+  /* line 170, ../sm-generate/sass/_custom.scss */
   .code {
     margin-left: 450px;
   }
 
-  /* line 172, ../sm-generate/sass/_custom.scss */
+  /* line 174, ../sm-generate/sass/_custom.scss */
   .comment {
     width: 410px;
   }
 
-  /* line 176, ../sm-generate/sass/_custom.scss */
+  /* line 178, ../sm-generate/sass/_custom.scss */
   #handler-vertical {
     width: 450px;
   }
 
-  /* line 180, ../sm-generate/sass/_custom.scss */
+  /* line 182, ../sm-generate/sass/_custom.scss */
   .background {
     width: 450px;
   }

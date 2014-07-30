@@ -9,8 +9,6 @@
 
 $(document).ready(function(){
 
-  var mousedrag = false;
-
   $('a[href*=#]:not([href=#])').click(function() {
     if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
       var target = $(this.hash);
@@ -24,6 +22,26 @@ $(document).ready(function(){
     }
   });
 
+// {id:11,text:"11",icon:,children:[],li_attr:[],a_attr:[],state:{opened:false,disabled:false,selected:false}}
+
+  $('#jstree').jstree({ 'core' : {
+    'data' : [
+       'Simple root node',
+        {id:11,text:"11",icon: "",children:[],li_attr:[],a_attr:[], state:{opened:false,disabled:false,selected:false}}
+      //  {
+      //    'text' : 'Root node 2',
+      //    'state' : {
+      //      'opened' : true,
+      //      'selected' : true
+      //    },
+      //    'children' : [
+      //      { 'text' : 'Child 1' },
+      //      'Child 2'
+      //    ]
+      // }
+    ]
+} });
+ 
   $("#handler-vertical").resizable({});
 
   $("#handler-vertical").on('resize', function(event) {
@@ -57,29 +75,4 @@ $(document).ready(function(){
       $(event.currentTarget.parentElement.children[i]).toggleClass('highlight-text');
     };
   }
-  // $("#handler-vertical").on("resizestop", function(event, ui) {
-  //   var commentWidth = parseInt($("#handler-vertical")[0].offsetLeft);
-  //   console.log($("#handler-vertical")[0].offsetLeft);
-  //   $("#handler-vertical").applyStyle('width', commentWidth);
-  //   $(".background").applyStyle('width', commentWidth);
-  // });
-
-  // $("#handler-vertical .ui-resizable-e").mousedown(function(event) {
-  //   mousedrag = true;
-  //   console.log("#handler-vertical mouse down...");
-  // });
-
-  // $("#handler-vertical .ui-resizable-e").mouseup(function(event) {
-  //   mousedrag = false;
-  //   console.log("#handler-vertical mouse up...");
-  // });
-
-  // $("#handler-vertical .ui-resizable-e").mousemove(function(event) {
-  //   if (mousedrag) {
-  //     $("#handler-vertical").width(event.clientX);
-  //     console.log("#handler-vertical mouse drag...");
-  //   }
-  // });
-
-
 });
