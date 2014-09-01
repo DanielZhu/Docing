@@ -1,7 +1,11 @@
 var fs = require('fs');
+var path = require('path');
 
-var langPath = './resources/languages.json';
+var langPath = path.join(__dirname, "../resources/languages.json");
 var langConfigs = null;
+
+console.log(__dirname);
+console.log(__filename);
 
 var loadLangConfigs = function () {
   langConfigs = JSON.parse(fs.readFileSync(langPath, 'utf8'));

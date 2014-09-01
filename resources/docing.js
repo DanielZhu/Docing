@@ -27,18 +27,18 @@ $(document).ready(function(){
   $('#jstree').jstree({ 'core' : {
     'data' : [
        'Simple root node',
-        {id:11,text:"11",icon: "",children:[],li_attr:[],a_attr:[], state:{opened:false,disabled:false,selected:false}}
-      //  {
-      //    'text' : 'Root node 2',
-      //    'state' : {
-      //      'opened' : true,
-      //      'selected' : true
-      //    },
-      //    'children' : [
-      //      { 'text' : 'Child 1' },
-      //      'Child 2'
-      //    ]
-      // }
+        {id:11,text:"11",icon: "",children:[],li_attr:[],a_attr:[], state:{opened:false,disabled:false,selected:false}},
+       {
+         'text' : 'Root node 2',
+         'state' : {
+           'opened' : true,
+           'selected' : true
+         },
+         'children' : [
+           { 'text' : 'Child 1' },
+           'Child 2'
+         ]
+      }
     ]
 } });
  

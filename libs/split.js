@@ -15,7 +15,6 @@ var resetItem = function () {
 var splitOutSrc = function (fileData, langConfig) {
   outputList = [];
   var item = resetItem();
-  console.log('splitOutSrc start...');
 
   var commentFommat = langConfig.comments;
   var previousCommStart = null;
@@ -84,11 +83,9 @@ var splitOutSrc = function (fileData, langConfig) {
       fileData = fileData.substring(commEndIndexOf + commEnd.length);
       previousCommStart = commStart;
     }
-
   }
 
-  console.log('splitOutSrc end...');
-  fse.writeFileSync('C:/staydan.com/libs/docs/log.json', JSON.stringify(outputList), {encoding: 'utf8'});
+  // fse.writeFileSync('C:/staydan.com/libs/docs/log.json', JSON.stringify(outputList), {encoding: 'utf8'});
   return outputList;
 }
 

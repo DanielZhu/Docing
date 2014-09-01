@@ -1,36 +1,41 @@
 {
-  "name":         "docing",
-  "version":      "0.1.0",
-  "main": "hello-world-server.njs",
-  "description":  "A document generator for all the languages",
-  "keywords":     ["documentation", "docs", "generator"],
-  "author":       "Daniel Zhu (Zhu Mengdan)",
-  "readmeFilename": "README.md",
-  "scripts": {
-    "test": "echo \"Error: no test specified! Configure in package.json\" && exit 1"
-  },
-  "licenses": [{
-    "type":       "MIT",
-    "url":        "http://opensource.org/licenses/mit-license.php"
-  }],
-  "repository": {
-    "type": "git",
-    "url": ""
-  },
-  "engines": {
-    "node":       ">=0.2.0"
-  },
-  "dependencies": {
-    "commander":  ">= 0.5.2",
-    "marked":     ">= 0.2.7",
-    "underscore": ">= 1.0.0",
-    "highlight.js": ">= 8.1.0",
-    "fs-extra": "0.10.0",
-    "jstree": ">= 3.0.0",
-    "jquery": ">= 2.0.0"
-  },
-  "main" :        "./Docing",
-  "bin": {
-    "docing":      "./bin/docing"
-  }
+    "name": "docing",
+    "version": "0.1.5",
+    "main": "./docing",
+    "description": "A document generator for all the languages",
+    "keywords": [
+        "documentation",
+        "docs",
+        "generator"
+    ],
+    "author": "Daniel Zhu (Zhu Mengdan)",
+    "readmeFilename": "README.md",
+    "scripts": {
+        "test": "echo \"Error: no test specified! Configure in package.json\" && exit 1"
+    },
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "http://opensource.org/licenses/mit-license.php"
+        }
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/DanielZhu/Docing"
+    },
+    "engines": {
+        "node": ">=0.2.0"
+    },
+    "dependencies": {
+        "commander": ">= 0.5.2",
+        "marked": ">= 0.2.7",
+        "underscore": ">= 1.0.0",
+        "highlight.js": ">= 8.1.0",
+        "fs-extra": ">=0.11.0",
+        "jstree": ">= 3.0.0",
+        "jquery": ">= 2.0.0"
+    },
+    "bin": {
+        "docing": "./bin/docing"
+    }
 }
