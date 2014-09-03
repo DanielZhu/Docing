@@ -1,16 +1,53 @@
-var fse = require('fs-extra');
+// var fse = require('fs-extra');
 
 // [
-//  {"code": "", "comment": ""},
-//  {"code": "", "comment": ""},
-//  {"code": "", "comment": ""}
+//  {'code': ', 'comment': '},
+//  {'code': ', 'comment': '},
+//  {'code': ', 'comment': '}
 // ]
 
 var outputList = [];
 
 var resetItem = function () {
-  return new Object({"comment": "", "code": ""});
-}
+  return new Object({'comment': '', 'code': ''});
+};
+
+// Find the nearest comment position
+var findCommentPosition = function (fileData, symbol, ignoreTime) {
+  // Set the ignore time default to 0
+  if (ignoreTime === undefined) {
+    ignoreTime = 0;
+  }
+
+  // find the correct start symbol at the right position
+  var startAt = fileData.indexOf(symbol);
+  for (var i = 0; i < ignoreTime; i++) {
+    startAt = fileData.indexOf(symbol, startAt + symbol.length + 1);
+  };
+
+  var cutFileDataTilCommentStart = fileData.substring(0, startAt);
+  var singleQuotaPos = cutFileDataTilCommentStart.indexOf('\'');
+  var doubleQuotaPos = cutFileDataTilCommentStart.indexOf('\"');
+  var dirturb = '';
+  var quotaArr = [], quotaCount = 0;
+  // quota count
+  if (singleQuotaPos > doubleQuotaPos && singleQuotaPos > 0) {
+    dirturb = '\'';
+    quotaArr = cutFileDataTilCommentStart.match(/\'/g);  
+  } else if (singleQuotaPos < doubleQuotaPos && doubleQuotaPos > 0) {
+    dirturb = '\"';
+    quotaArr = cutFileDataTilCommentStart.match(/\"/g);  
+  }
+
+  quotaCount = quotaArr.length;
+  if (quotaCount % 2 === 0) {
+    // The symbol is standalone
+    return startAt;
+  } else {
+    // The symbol is bewteen the quota, should find the next one.
+    return findCommentPosition(fileData, symbol, ignoreTime + 1);
+  }
+};
 
 var splitOutSrc = function (fileData, langConfig) {
   outputList = [];
@@ -23,17 +60,19 @@ var splitOutSrc = function (fileData, langConfig) {
 
     var commStartMin = -1;
     var commentIndex = -1;
-    var commStart = "";
+    var commStart = '';
+    var commEndIndexOf;
+    
     for (var i = 0; i < commentFommat.length; i++) {
       commStart = commentFommat[i][0];
 
-      var commStartIndexOf = fileData.indexOf(commStart);
+      var commStartIndexOf = findCommentPosition(fileData, commStart);
 
       if (commStartIndexOf < commStartMin || commStartMin === -1) {
         commStartMin = commStartIndexOf;
         commentIndex = i;
       }
-    };
+    }
     
     var commEnd = commentFommat[commentIndex][1];
     commStart = commentFommat[commentIndex][0];
@@ -61,7 +100,7 @@ var splitOutSrc = function (fileData, langConfig) {
         
         // Store the comment block
         var comment = fileData.substring(commStart.length, commEndIndexOf + commEnd.length);
-        item.comment += "  \n" + comment;
+        item.comment += '  \n' + comment;
 
       } else {
         if (fileData.substring(0, commStartMin).trim().length !== 0) {
@@ -81,13 +120,18 @@ var splitOutSrc = function (fileData, langConfig) {
         }
       }
       fileData = fileData.substring(commEndIndexOf + commEnd.length);
+      // Reach the end of the file
+      if (fileData.length === 0) {
+          outputList.push(item);
+          break;
+      }
       previousCommStart = commStart;
     }
   }
 
   // fse.writeFileSync('C:/staydan.com/libs/docs/log.json', JSON.stringify(outputList), {encoding: 'utf8'});
   return outputList;
-}
+};
 
 var readLine = function (fileData) {
   loadLangConfig();
@@ -96,18 +140,15 @@ var readLine = function (fileData) {
   var startAt = 0;
   var endAt = lineIndexOf;
   var line = '';
-  var i = 0;
 
   while (lineIndexOf !== -1) {
     line = fileData.substring(startAt, endAt);
-    // writeToFile(filename, i++ + ': ' + line);
-    // console.log(i + ': ' + line);
     fileData = fileData.substring(endAt + 4);
     lineIndexOf = fileData.indexOf('\r\n');
     endAt = lineIndexOf;
   }
   console.log('Readline end...');
-}
+};
 
 module.exports.readLine = readLine;
 module.exports.splitOutSrc = splitOutSrc;

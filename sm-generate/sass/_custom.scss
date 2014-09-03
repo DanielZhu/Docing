@@ -32,7 +32,7 @@ body {
   margin: 0; 
   padding: 0;
   height:100%;
-  background-color: #FDF6E3;
+  background-color: #ECF1F7;
 }
 
 #jstree {
@@ -78,6 +78,7 @@ body {
   font-family: "Source Code Pro";
   padding: 5px 10px 5px 30px;
   word-wrap: normal;
+  font-size: 12px;
 }
 
 .code-anchor {
@@ -123,14 +124,13 @@ body {
 }
 
 .highlight-text {
-  background-color: lightblue;
-
+  background-color: rgba(211, 221, 243, 0.5);
 }
 
 /*---------------------- Low resolutions (> 320px) ---------------------*/
 @media only screen and (min-width: 320px) {
   .code {
-    width: 100%;
+    // width: 100%;
   }
 
   .comment {

@@ -22,10 +22,10 @@ var lang = require('../libs/lang');
  */
 
 program
-  .version('0.1.5')
+  .version('0.1.6')
   .usage('[options] <files or dirs>')
   .option('-o, --output [path]', 'All the docs will put into this directory, the current path is the default output.', '.')
-  .option('-l, --log', '0.1.5')
+  .option('-l, --log', '0.1.6')
   .parse(process.argv);
 
 // console.log(' args: %j', program.args);
@@ -45,6 +45,8 @@ var startDocing = function () {
   fileTree = analyzeFileStructure(inputPath);
 
   praseAndFormatFiles();
+
+  copyResources(resultPath);
 
   sys.debug("The End ...");
   fse.writeFileSync('C:/staydan.com/rabbit/tree.json', JSON.stringify(fileTree), {encoding: 'utf8'});
@@ -150,11 +152,32 @@ var translateFile = function (filePath) {
       var fileData = fse.readFileSync(filePath, 'utf8');
       // console.log('got %d bytes of data', fileData.length);
 
+      // Add the end symbol to each file.
+      fileData += '\n';
       outputList = split.splitOutSrc(fileData, langConfig);
 
       output.renderHtml(outputList, langConfig, resultPath, filePath.substr(inputPath.length), fileTree);
     }
   }
+};
+
+var copyResources = function (docPath) {
+  //copies directory, even if it has subdirectories or files
+  fse.copySync(path.join(__dirname, '../resources'), docPath + '/resources'); 
+
+  // var cssFile = filePath + 'resources/docing.css';
+  // var resourceExist = fse.existsSync(filePath + 'resources');
+  // if (!resourceExist) {
+  //   fse.mkdirSync(filePath + 'resources', '0777');
+  // }
+  // fse.open(cssFile , 'w+', '0777', function(err, fd) {
+  //   fse.closeSync(fd);
+  //   var readStream = fse.createReadStream('./resources/docing.css', {encoding: 'utf8', autoClose: true});
+
+  //   readStream.on('data', function(chunk) {
+  //     writeToFile(cssFile, chunk);
+  //   });
+  // });
 };
 
 var createNode = function (text, path, folderFlag) {

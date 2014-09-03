@@ -1,6 +1,6 @@
 {
     "name": "docing",
-    "version": "0.1.5",
+    "version": "0.1.6",
     "main": "./docing",
     "description": "A document generator for all the languages",
     "keywords": [

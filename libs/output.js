@@ -37,27 +37,6 @@ var renderHtml = function (outputList, langConfig, outputBasePath, relativePath,
   var templateHtml = underscore.template(templateContext);
   var compiled = templateHtml({_: underscore, lc: langConfig, hljs: hljs, mk: marked, splitList: outputList, parentTier: parentTierStr/*, ft: fileTreeHtml*/});
   writeToFile(outputPath + '.html', compiled);
-  copyResources(outputBasePath);
-};
-
-var copyResources = function (docPath) {
-  // var cssFile = filePath + 'resources/docing.css';
-
-  //copies directory, even if it has subdirectories or files
-  fse.copySync(path.join(__dirname, '../resources'), docPath + '/resources'); 
-
-  // var resourceExist = fse.existsSync(filePath + 'resources');
-  // if (!resourceExist) {
-  //  fse.mkdirSync(filePath + 'resources', '0777');
- //  }
- //  fse.open(cssFile , 'w+', '0777', function(err, fd) {
- //    fse.closeSync(fd);
-  //  var readStream = fse.createReadStream('./resources/docing.css', {encoding: 'utf8', autoClose: true});
-
-  //  readStream.on('data', function(chunk) {
-  //    writeToFile(cssFile, chunk);
-  //   });
- //  });
 };
 
 module.exports.renderHtml = renderHtml;
